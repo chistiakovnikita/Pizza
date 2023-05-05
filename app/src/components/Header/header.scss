@@ -1,0 +1,59 @@
+@import '../../scss/variables.scss';
+
+.header {
+    &__navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px 0;
+        
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+
+        &__img {
+            width: 60px;
+            margin-right: 15px;
+        }
+
+        &__text {
+            color: $red;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100px;
+        font-weight: 700;
+        color: $white;
+        padding: 10px;
+        background: $red;
+        border: 2px solid $red;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: background 0.3s linear;
+
+        &:hover {
+            background: $red-hover;
+        }
+
+        &-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        &-total {
+           font-size: 18px;
+        }
+    }
+
+
+
+   
+}
