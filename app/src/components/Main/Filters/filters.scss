@@ -1,0 +1,29 @@
+@import './../../../../src/scss/variables.scss';
+
+.filters {
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 80px;
+    }
+
+    &__menu {
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__item {
+        border: 2px solid $red;
+        border-radius: 15px;
+        padding: 5px 10px;
+        color: $red;
+        cursor: pointer;
+    }
+
+    .active {
+        background: $red;
+        color: $white;
+    }
+}

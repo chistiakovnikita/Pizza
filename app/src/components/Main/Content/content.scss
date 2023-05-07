@@ -1,0 +1,15 @@
+
+
+.content {
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    &__title {
+        font-size: 35px;
+        font-weight: 700;
+        margin-bottom: 50px;
+    }
+}
