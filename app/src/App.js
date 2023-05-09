@@ -1,16 +1,25 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
 import Header from './components/Header'
-import Content from './components/Main/Content'
-import Filters from './components/Main/Filters'
+import Home from './components/pages/Home'
+import Cart from './components/pages/Cart'
+import NotFound from './components/pages/NotFound'
 
 import './scss/App.scss'
 
 function App() {
     return (
-        <div className="App">
-            <Header />
-            <Filters />
-            <Content />
-        </div>
+        <BrowserRouter>
+            <div className="App">
+                <Header />
+                <Routes>
+                    <Route  path='/' element={<Home />}/>
+                    <Route path='/cart' element={<Cart />}/>
+                    <Route path='*' element={<NotFound />}/>
+                   
+                </Routes>
+            </div>
+        </BrowserRouter>
     )
 }
 

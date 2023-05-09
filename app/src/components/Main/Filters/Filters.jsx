@@ -1,10 +1,8 @@
-import { useState } from 'react'
-
 import Sort from '../Sort'
 import './filters.scss'
 
-const Filters = () => {
-    const [activeFilter, setActiveFilter] = useState(0)
+const Filters = (props) => {
+    const { categoryIndex, setCategoryIndex, sortIndex, setSortIndex } = props
 
     const filters = [
         'Все',
@@ -15,9 +13,7 @@ const Filters = () => {
         'Мясные',
     ]
 
-    const filterHandler = (index) => {
-        setActiveFilter(index)
-    }
+
 
     return (
         <section className="filters">
@@ -26,10 +22,10 @@ const Filters = () => {
                     <ul className="filters__menu">
                         {filters.map((filter, index) => (
                             <li
-                                onClick={() => filterHandler(index)}
+                                onClick={() => setCategoryIndex(index)}
                                 key={index}
                                 className={
-                                    activeFilter === index
+                                    categoryIndex === index
                                         ? 'filters__item active'
                                         : 'filters__item'
                                 }
@@ -39,7 +35,7 @@ const Filters = () => {
                         ))}
                     </ul>
 
-                    <Sort />
+                    <Sort sortIndex={sortIndex} setSortIndex={setSortIndex} />
                 </div>
             </div>
         </section>

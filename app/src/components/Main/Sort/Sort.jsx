@@ -2,14 +2,28 @@ import { useState } from 'react'
 
 import './sort.scss'
 
-const Sort = () => {
-    const [open, setOpen] = useState(false)
-    const [selected, setSelected] = useState(0)
+const Sort = (props) => {
+    const { sortIndex, setSortIndex } = props
 
-    const menu = ['популярности', 'цене', 'названию']
+    const [open, setOpen] = useState(false)
+
+    const menuSort = [
+        {
+            name: 'популярности',
+            sort: 'rating',
+        },
+        {
+            name: 'цене',
+            sort: 'price',
+        },
+        {
+            name: 'названию',
+            sort: 'title',
+        },
+    ]
 
     const itemSortHandler = (index) => {
-        setSelected(index)
+        setSortIndex(index)
         setOpen(false)
     }
 
@@ -17,18 +31,18 @@ const Sort = () => {
         <div className="sort">
             <div onClick={() => setOpen(!open)} className="sort__label">
                 <p>Сортировка по:</p>
-                <span>{menu[selected]}</span>
+                <span>{sortIndex.name}</span>
             </div>
 
             {open && (
                 <ul className="sort__menu">
-                    {menu.map((item, index) => (
+                    {menuSort.map((item, index) => (
                         <li
-                            onClick={() => itemSortHandler(index)}
+                            onClick={() => itemSortHandler(item)}
                             key={index}
                             className="sort__item"
                         >
-                            {item}
+                            {item.name}
                         </li>
                     ))}
                 </ul>
