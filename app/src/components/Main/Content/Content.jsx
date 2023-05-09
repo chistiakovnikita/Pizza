@@ -5,24 +5,22 @@ import Skeleton from '../Skeleton'
 import './content.scss'
 
 const Content = (props) => {
-    const { categoryIndex, sortIndex } = props
+    const { categoryIndex, sortIndex ,searchValue} = props
 
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
+    const category = categoryIndex > 0 ? `category=${categoryIndex}` : ''
+
     useEffect(() => {
         setIsLoading(true)
         fetch(
-            `https://6457bacd0c15cb14820f9c6c.mockapi.io/pizzas?${
-                categoryIndex > 0 ? `category=${categoryIndex}` : ''
-            }&sortBy=${sortIndex.sort}`
+            `https://6457bacd0c15cb14820f9c6c.mockapi.io/pizzas?${category}&sortBy=${sortIndex.sort}&search=${searchValue}`
         )
             .then((response) => response.json())
-            .then((data) => {
-                setData(data)
-            })
+            .then((data) => setData(data))
             .finally(() => setIsLoading(false))
-    }, [categoryIndex,sortIndex])
+    }, [category, sortIndex,searchValue])
 
     return (
         <section className="content">

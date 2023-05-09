@@ -2,12 +2,14 @@ import { useState } from 'react'
 import Content from '../../Main/Content'
 import Filters from '../../Main/Filters'
 
-const Home = () => {
+const Home = (props) => {
+    const {searchValue} = props
     const [categoryIndex, setCategoryIndex] = useState(0)
     const [sortIndex, setSortIndex] = useState({
         name: 'популярности',
-        sort: 'price',
+        sort: 'rating',
     })
+   
 
     console.log(sortIndex.sort)
     return (
@@ -18,7 +20,7 @@ const Home = () => {
                 sortIndex={sortIndex}
                 setSortIndex={setSortIndex}
             />
-            <Content categoryIndex={categoryIndex} sortIndex={sortIndex} />
+            <Content searchValue={searchValue} categoryIndex={categoryIndex} sortIndex={sortIndex} />
         </main>
     )
 }

@@ -1,11 +1,14 @@
+import { Link } from 'react-router-dom'
 import { MdShoppingCart } from 'react-icons/md'
 
 import logo from '../../img/logo.svg'
+import Search from '../Search/Search'
 
 import './header.scss'
-import { Link } from 'react-router-dom'
 
-const Header = () => {
+const Header = (props) => {
+
+    const {searchValue, setSearchValue} = props
     return (
         <header className="header">
             <div className="container">
@@ -20,6 +23,7 @@ const Header = () => {
                             <h1 className="logo__text">PIZZA</h1>
                         </div>
                     </Link>
+                    <Search searchValue={searchValue} setSearchValue={setSearchValue} />
                     <Link className="header__button" to="cart">
                         <span className="header__button-total">100р</span>
                         <MdShoppingCart className="header__button-icon" />

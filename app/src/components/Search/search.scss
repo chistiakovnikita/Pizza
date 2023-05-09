@@ -1,0 +1,36 @@
+@import '../../scss/variables.scss';
+
+.search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 30px;
+    border: 2px solid $red;
+    border-radius: 15px;
+    padding: 0 5px;
+    margin: 0 5px;
+    &__input {
+        max-width: 270px;
+        height: 25px;
+        width: 100%;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: $red;
+        cursor: pointer;
+        &::placeholder {
+            color: $red;
+        }
+    }
+
+    &__icon {
+        width: 30px;
+        color: $red;
+        cursor: pointer;
+
+        :hover {
+            opacity: 0.5;
+        }
+    }
+}
