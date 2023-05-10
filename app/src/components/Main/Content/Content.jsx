@@ -1,11 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+
+import axios from 'axios'
+
 import PizzaCard from '../PizzaCard'
 import Skeleton from '../Skeleton'
+import { AppContext } from '../../../App'
 
 import './content.scss'
 
-const Content = (props) => {
-    const { categoryIndex, sortIndex ,searchValue} = props
+const Content = () => {
+    const { searchValue } = useContext(AppContext)
+
+    const { categoryIndex, sortIndex } = useSelector(
+        (state) => state.filterSlice
+    )
 
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -14,13 +23,13 @@ const Content = (props) => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch(
-            `https://6457bacd0c15cb14820f9c6c.mockapi.io/pizzas?${category}&sortBy=${sortIndex.sort}&search=${searchValue}`
-        )
-            .then((response) => response.json())
-            .then((data) => setData(data))
+        axios
+            .get(
+                `https://6457bacd0c15cb14820f9c6c.mockapi.io/pizzas?${category}&sortBy=${sortIndex.sort}&search=${searchValue}`
+            )
+            .then((response) => setData(response.data))
             .finally(() => setIsLoading(false))
-    }, [category, sortIndex,searchValue])
+    }, [category, sortIndex, searchValue])
 
     return (
         <section className="content">

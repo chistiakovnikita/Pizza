@@ -1,0 +1,35 @@
+.sort {
+  position: relative;
+  width: 240px;
+}
+.sort__label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.sort p {
+  margin-right: 10px;
+}
+.sort span {
+  color: #E52E2E;
+  font-size: 18px;
+  border-bottom: 1px solid #E52E2E;
+}
+.sort__menu {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  box-shadow: 1px 0 5px 0 #efb5b5;
+  border-radius: 15px;
+}
+.sort__item {
+  font-size: 18px;
+  padding: 7px 20px;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: all 0.3s linear;
+}
+.sort__item:hover {
+  background: #efb5b5;
+  color: white;
+}/*# sourceMappingURL=sort.css.map */

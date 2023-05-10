@@ -6,9 +6,7 @@ import Search from '../Search/Search'
 
 import './header.scss'
 
-const Header = (props) => {
-
-    const {searchValue, setSearchValue} = props
+const Header = () => {
     return (
         <header className="header">
             <div className="container">
@@ -23,7 +21,7 @@ const Header = (props) => {
                             <h1 className="logo__text">PIZZA</h1>
                         </div>
                     </Link>
-                    <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+                    <Search />
                     <Link className="header__button" to="cart">
                         <span className="header__button-total">100р</span>
                         <MdShoppingCart className="header__button-icon" />

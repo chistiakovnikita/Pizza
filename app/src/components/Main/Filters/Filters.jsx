@@ -1,8 +1,14 @@
+import { useDispatch, useSelector } from 'react-redux'
+import { setCategoryIndex } from '../../../redux/slices/filterSlice'
+
 import Sort from '../Sort'
 import './filters.scss'
 
-const Filters = (props) => {
-    const { categoryIndex, setCategoryIndex, sortIndex, setSortIndex } = props
+const Filters = () => {
+    const categoryIndex = useSelector(
+        (state) => state.filterSlice.categoryIndex
+    )
+    const dispatch = useDispatch()
 
     const filters = [
         'Все',
@@ -13,8 +19,6 @@ const Filters = (props) => {
         'Мясные',
     ]
 
-
-
     return (
         <section className="filters">
             <div className="container">
@@ -22,7 +26,9 @@ const Filters = (props) => {
                     <ul className="filters__menu">
                         {filters.map((filter, index) => (
                             <li
-                                onClick={() => setCategoryIndex(index)}
+                                onClick={() =>
+                                    dispatch(setCategoryIndex(index))
+                                }
                                 key={index}
                                 className={
                                     categoryIndex === index
@@ -35,7 +41,7 @@ const Filters = (props) => {
                         ))}
                     </ul>
 
-                    <Sort sortIndex={sortIndex} setSortIndex={setSortIndex} />
+                    <Sort />
                 </div>
             </div>
         </section>

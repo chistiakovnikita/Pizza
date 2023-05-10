@@ -1,11 +1,15 @@
 import { useState } from 'react'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { setSortIndex } from '../../../redux/slices/filterSlice'
+
 import './sort.scss'
 
-const Sort = (props) => {
-    const { sortIndex, setSortIndex } = props
-
+const Sort = () => {
     const [open, setOpen] = useState(false)
+
+    const sortIndex = useSelector((state) =>state.filterSlice.sortIndex)
+    const dispatch = useDispatch()
 
     const menuSort = [
         {
@@ -23,7 +27,7 @@ const Sort = (props) => {
     ]
 
     const itemSortHandler = (index) => {
-        setSortIndex(index)
+        dispatch(setSortIndex(index))
         setOpen(false)
     }
 
