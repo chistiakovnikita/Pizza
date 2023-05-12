@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
 
-import PizzaCard from '../PizzaCard'
-import Skeleton from '../Skeleton'
+import PizzaCard from '../../PizzaCard'
+import Skeleton from '../../Skeleton'
 import { AppContext } from '../../../App'
 
 import './content.scss'

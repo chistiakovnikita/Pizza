@@ -3,7 +3,7 @@ import { createContext, useState } from 'react'
 
 import Header from './components/Header'
 import Home from './components/pages/Home'
-import Cart from './components/pages/Cart'
+import CartPage from './components/pages/CartPage'
 import NotFound from './components/pages/NotFound'
 
 import './scss/App.scss'
@@ -12,7 +12,7 @@ export const AppContext = createContext()
 
 function App() {
     const [searchValue, setSearchValue] = useState('')
-   
+
     return (
         <BrowserRouter>
             <div className="App">
@@ -22,10 +22,10 @@ function App() {
                         setSearchValue,
                     }}
                 >
-                    <Header />
+                   <Header />
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/cart" element={<Cart />} />
+                        <Route path="/cart" element={<CartPage />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </AppContext.Provider>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { MdShoppingCart } from 'react-icons/md'
 
 import logo from '../../img/logo.svg'
-import Search from '../Search/Search'
+import Search from './../Search'
 
 import './header.scss'
 
@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <header className="header">
             <div className="container">
-                <nav className="header__navigation">
+            <nav className="header__navigation">
                     <Link className="link" to="/">
                         <div className="logo">
                             <img
