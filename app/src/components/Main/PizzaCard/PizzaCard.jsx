@@ -1,14 +1,38 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addProduct } from '../../../redux/slices/cartSlice'
 
 import './pizzaCard.scss'
 
 const PizzaCard = (props) => {
-    const { img, price, title, type, size } = props
+    const { img, price, title, type, size, id } = props
+
+    const currentProduct = useSelector((state) =>
+        state.cartSlice.products.find((product) => product.id === id)
+    )
+    // нужна проверка т.к. приходит undefined
+    const count = currentProduct ? currentProduct.count : 0
+    
+    const dispatch = useDispatch()
 
     const [activeType, setActiveType] = useState(0)
     const [activeSize, setActiveSize] = useState(0)
 
     const typeName = ['традиционное', 'тонкое']
+    const sizeValue = ['25', '30', '35']
+
+    const addProductHandler = () => {
+        const product = {
+            id,
+            title,
+            price,
+            img,
+            type: typeName[activeType],
+            size: sizeValue[activeSize],
+        }
+
+        dispatch(addProduct(product))
+    }
 
     return (
         <div className="pizza-card">
@@ -49,8 +73,11 @@ const PizzaCard = (props) => {
             </div>
             <div className="pizza-card__price">
                 <span>от {price} руб.</span>
-                <button className="pizza-card__price-btn">
-                    Добавить <span>3</span>
+                <button
+                    onClick={addProductHandler}
+                    className="pizza-card__price-btn"
+                >
+                    Добавить {count > 0 && <span>{count}</span>}
                 </button>
             </div>
         </div>

@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom'
 import { MdShoppingCart } from 'react-icons/md'
 
+import { useSelector } from 'react-redux'
+
 import logo from '../../img/logo.svg'
 import Search from './../Search'
 
 import './header.scss'
 
 const Header = () => {
+
+    const {totalPrice, totalCount} = useSelector((state) => state.cartSlice)
     return (
         <header className="header">
             <div className="container">
@@ -23,9 +27,9 @@ const Header = () => {
                     </Link>
                     <Search />
                     <Link className="header__button" to="cart">
-                        <span className="header__button-total">100р</span>
+                        <span className="header__button-total">{totalPrice}р</span>
                         <MdShoppingCart className="header__button-icon" />
-                        <span>5</span>
+                        <span>{totalCount}</span>
                     </Link>
                 </nav>
             </div>
