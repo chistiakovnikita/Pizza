@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { clearProducts } from '../../../redux/slices/cartSlice'
 
 import CartProduct from '../CartProduct'
 
@@ -14,6 +15,7 @@ const Cart = () => {
                 <p className="cart-header__name">название</p>
                 <p className="cart-header__quantity">количество</p>
                 <p className="cart-header__price">цена</p>
+                <button onClick={() =>dispatch(clearProducts())} className='cart-header__btn'>очистить корзину</button>
             </div>
 
             {products.map((product) => (

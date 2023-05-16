@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     totalPrice: 0,
     products: [],
-    totalCount:0,
+    totalCount: 0,
 }
 
 const cartSlice = createSlice({
@@ -16,7 +16,7 @@ const cartSlice = createSlice({
             )
 
             if (findProduct) {
-              findProduct.count++
+                findProduct.count++
             } else {
                 state.products.push({
                     ...action.payload,
@@ -30,7 +30,27 @@ const cartSlice = createSlice({
             )
 
             state.totalCount = state.products.reduce(
-                (acc, product) => acc + product.count ,
+                (acc, product) => acc + product.count,
+                0
+            )
+        },
+
+        decreaseCount(state, action) {
+            const findProduct = state.products.find(
+                (product) => product.id === action.payload
+            )
+
+            if (findProduct) {
+                findProduct.count--
+            }
+
+            state.totalPrice = state.products.reduce(
+                (acc, product) => acc + product.count * product.price,
+                0
+            )
+
+            state.totalCount = state.products.reduce(
+                (acc, product) => acc + product.count,
                 0
             )
         },
@@ -39,14 +59,27 @@ const cartSlice = createSlice({
             state.products = state.products.filter(
                 (product) => product.id !== action.payload
             )
+
+            state.totalPrice = state.products.reduce(
+                (acc, product) => acc + product.count * product.price,
+                0
+            )
+
+            state.totalCount = state.products.reduce(
+                (acc, product) => acc + product.count,
+                0
+            )
         },
         clearProducts(state) {
             state.products = []
+            state.totalPrice = 0
+            state.totalCount = 0
+            
         },
     },
 })
 
-export const { addProduct, deleteProduct, clearProducts, incrementCount } =
+export const { addProduct, deleteProduct, clearProducts, decreaseCount } =
     cartSlice.actions
 
 export default cartSlice.reducer

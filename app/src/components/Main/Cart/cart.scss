@@ -1,3 +1,5 @@
+@import '../../../scss/variables.scss';
+
 .cart {
     max-width: 1200px;
     margin: 0 auto;
@@ -14,15 +16,31 @@
 .cart-header {
     display: grid;
     grid-template-columns: 2fr repeat(3, 3fr) 1fr;
+    align-items: center;
     text-transform: uppercase;
     font-weight: 500;
     padding: 10px;
-    background-color: #ccc;
+    background-color: $red-light;
     text-align: center;
 }
 
 .cart-header__name {
     grid-column-start: 2;
+}
+
+.cart-header__btn {
+    border: 2px solid $red;
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-size: 16px;
+    color: $white;
+    cursor: pointer;
+    background: $red;
+    transition: background 0.3s linear;
+
+    &:hover {
+        background: $red-hover;
+    }
 }
 
 .cart-footer {
@@ -31,7 +49,7 @@
     font-weight: 700;
     font-size: 20px;
     align-items: center;
-    background-color: #ccc;
+    background-color: $red-light;
     padding: 10px;
     text-align: center;
 }

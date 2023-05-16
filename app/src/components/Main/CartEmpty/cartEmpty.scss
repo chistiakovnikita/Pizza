@@ -1,0 +1,35 @@
+@import '../../../scss/variables.scss'; 
+
+.cart-empty {
+    text-align: center;
+
+    &__title {
+        font-size: 35px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    &__text {
+        margin-bottom: 10px;
+    }
+
+    &__link {
+        font-size: 18px;
+        font-weight: 700;
+        color: $red;
+        display: block;
+        transition: color 0.3s linear;
+       
+        &:hover {
+            color: $red-hover;
+        }
+    }
+
+    &__img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        
+    }
+}
