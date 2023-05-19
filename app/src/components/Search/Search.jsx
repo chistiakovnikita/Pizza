@@ -1,26 +1,27 @@
-import { useCallback, useContext, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { CiSearch } from 'react-icons/ci'
 import { GrClose } from 'react-icons/gr'
-import { AppContext } from '../../App'
 import debounce from 'lodash.debounce'
+import { setSearchValue } from '../../redux/slices/filterSlice'
 
 import './search.scss'
 
 const Search = () => {
     const [value, setValue] = useState('')
-    const { setSearchValue } = useContext(AppContext)
-
+    
+    const dispatch = useDispatch()
     const inputRef = useRef()
 
     const clearHandler = () => {
-        setSearchValue('')
+        dispatch(setSearchValue(''))
         setValue('')
         inputRef.current.focus()
     }
 
     const updateSearchValue = useCallback(
         debounce((str) => {
-            setSearchValue(str)
+            dispatch(setSearchValue(str))
         }, 300),
         []
     )

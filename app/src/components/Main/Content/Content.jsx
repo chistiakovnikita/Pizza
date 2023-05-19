@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect} from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../../App'
@@ -11,14 +11,11 @@ import Skeleton from '../Skeleton'
 import './content.scss'
 
 const Content = () => {
-    const { searchValue } = useContext(AppContext)
-    const { categoryIndex, sortIndex } = useSelector(
+    const { categoryIndex, sortIndex, searchValue } = useSelector(
         (state) => state.filterSlice
     )
     const { data, status } = useSelector((state) => state.pizzasSlice)
-
     const dispatch = useDispatch()
-
     const navigate = useNavigate()
     const category = categoryIndex > 0 ? `category=${categoryIndex}` : ''
 
