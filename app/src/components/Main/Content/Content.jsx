@@ -1,7 +1,6 @@
-import { useCallback, useContext, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { AppContext } from '../../../App'
+import { Link, useNavigate } from 'react-router-dom'
 import qs from 'qs'
 
 import { fetchPizzas } from '../../../redux/slices/pizzasSlice'
@@ -56,7 +55,13 @@ const Content = () => {
                                   <Skeleton key={index} />
                               ))
                             : data.map((pizza) => (
-                                  <PizzaCard key={pizza.id} {...pizza} />
+                                  <Link
+                                      className="content__link"
+                                      key={pizza.id}
+                                      to={`/pizza/${pizza.id}`}
+                                  >
+                                      <PizzaCard {...pizza} />
+                                  </Link>
                               ))}
                     </div>
                 )}

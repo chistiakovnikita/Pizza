@@ -1,10 +1,11 @@
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCategoryIndex } from '../../../redux/slices/filterSlice'
 
 import Sort from '../Sort'
 import './filters.scss'
 
-const Filters = () => {
+const Filters:React.FC = () => {
     const categoryIndex = useSelector(
         (state) => state.filterSlice.categoryIndex
     )

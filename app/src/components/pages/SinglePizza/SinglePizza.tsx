@@ -1,13 +1,18 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 
 import './singlePizza.scss'
 import { useEffect } from 'react'
 
-const SinglePizza = () => {
-    const [pizza, setPizza] = useState()
+const SinglePizza: React.FC = () => {
+    const [pizza, setPizza] = useState<{
+        img: string
+        title: string
+        description: string
+    }>()
     const params = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getPizza = async () => {
@@ -19,10 +24,11 @@ const SinglePizza = () => {
                 setPizza(response.data)
             } catch (error) {
                 alert('произошла ошибка')
+                navigate('/')
             }
         }
         getPizza()
-    }, [params.id])
+    }, [params.id, navigate])
 
     if (!pizza) {
         return <h2>Загрузкa...</h2>
@@ -33,9 +39,11 @@ const SinglePizza = () => {
             <div className="container">
                 <div className="single-pizza__inner">
                     <img src={pizza.img} alt="pic" />
-                    <div className='single-pizza__description'>
+                    <div className="single-pizza__description">
                         <h2 className="single-pizza__title">{pizza.title}</h2>
-                        <p className='single-pizza__text'>{pizza.description}</p>
+                        <p className="single-pizza__text">
+                            {pizza.description}
+                        </p>
                     </div>
                 </div>
             </div>

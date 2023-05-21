@@ -1,10 +1,20 @@
+import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../../redux/slices/cartSlice'
 
 import './pizzaCard.scss'
 
-const PizzaCard = (props) => {
+type PizzaCardProps = {
+    img:string
+    price:number
+    title:string
+    type:[]
+    size :[]
+    id:string
+}
+
+const PizzaCard:React.FC<PizzaCardProps> = (props) => {
     const { img, price, title, type, size, id } = props
 
     const currentProduct = useSelector((state) =>

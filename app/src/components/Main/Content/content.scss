@@ -17,4 +17,9 @@
         font-weight: 700;
         margin-bottom: 50px;
     }
+
+    &__link {
+        text-decoration: none;
+        color: inherit;
+    }
 }

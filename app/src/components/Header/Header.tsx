@@ -3,7 +3,7 @@ import { MdShoppingCart } from 'react-icons/md'
 import { useSelector } from 'react-redux'
 
 import logo from '../../img/logo.svg'
-import Search from './../Search'
+import Search from '../Search'
 
 import './header.scss'
 

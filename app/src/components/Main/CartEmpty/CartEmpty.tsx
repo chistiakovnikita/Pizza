@@ -1,9 +1,11 @@
-import './cartEmpty.scss'
+import React from 'react'
 import { Link } from 'react-router-dom'
-
 import cartEmpty from '../../../img/cart-empty.png'
 
-const CartEmpty = () => {
+import './cartEmpty.scss'
+
+
+const CartEmpty:React.FC = () => {
     return (
         <section className="cart-empty">
             <div className="container">
