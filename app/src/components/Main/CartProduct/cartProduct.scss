@@ -6,6 +6,7 @@
     font-weight: 500;
     margin-bottom: 50px;
     text-align: center;
+    padding: 10px;
 }
 
 .cart-product__img {
@@ -43,6 +44,8 @@
     text-align: right;
     cursor: pointer;
     transition: color 0.3s linear;
+    border: none;
+    background: none;
 }
 
 .cart-product__btn-delete:hover {

@@ -1,23 +1,23 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProduct } from '../../../redux/slices/cartSlice'
-
+import { CartProduct, addProduct } from '../../../redux/slices/cartSlice'
+import { RootState } from '../../../redux/store'
 import './pizzaCard.scss'
 
 type PizzaCardProps = {
     img:string
     price:number
     title:string
-    type:[]
-    size :[]
+    type:number[]
+    size :number[]
     id:string
 }
 
 const PizzaCard:React.FC<PizzaCardProps> = (props) => {
     const { img, price, title, type, size, id } = props
 
-    const currentProduct = useSelector((state) =>
+    const currentProduct = useSelector((state: RootState) =>
         state.cartSlice.products.find((product) => product.id === id)
     )
     // нужна проверка т.к. приходит undefined
@@ -32,13 +32,14 @@ const PizzaCard:React.FC<PizzaCardProps> = (props) => {
     const sizeValue = ['25', '30', '35']
 
     const addProductHandler = () => {
-        const product = {
+        const product: CartProduct = {
             id,
             title,
             price,
             img,
             type: typeName[activeType],
             size: sizeValue[activeSize],
+            count:0,
         }
 
         dispatch(addProduct(product))

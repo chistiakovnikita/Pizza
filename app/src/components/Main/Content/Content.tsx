@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import qs from 'qs'
@@ -6,21 +6,22 @@ import qs from 'qs'
 import { fetchPizzas } from '../../../redux/slices/pizzasSlice'
 import PizzaCard from '../PizzaCard'
 import Skeleton from '../Skeleton'
+import { RootState } from '../../../redux/store'
 
 import './content.scss'
 
-const Content = () => {
+const Content: React.FC = () => {
     const { categoryIndex, sortIndex, searchValue } = useSelector(
-        (state) => state.filterSlice
+        (state:RootState) => state.filterSlice
     )
-    const { data, status } = useSelector((state) => state.pizzasSlice)
+    const { data, status } = useSelector((state:RootState) => state.pizzasSlice)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const category = categoryIndex > 0 ? `category=${categoryIndex}` : ''
 
     const getData = useCallback(async () => {
         dispatch(
-            fetchPizzas({
+            fetchPizzas:({
                 category, //параметры category,sortIndex,searchValue необходимо передать в  AsyncThunk
                 sortIndex,
                 searchValue,

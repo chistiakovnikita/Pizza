@@ -1,14 +1,17 @@
+import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { MdShoppingCart } from 'react-icons/md'
 import { useSelector } from 'react-redux'
-
-import logo from '../../img/logo.svg'
+import { RootState } from '../../redux/store'
 import Search from '../Search'
+import logo from '../../img/logo.svg'
 
 import './header.scss'
 
-const Header = () => {
-    const { totalPrice, totalCount } = useSelector((state) => state.cartSlice)
+const Header: React.FC = () => {
+    const { totalPrice, totalCount } = useSelector(
+        (state: RootState) => state.cartSlice
+    )
     const location = useLocation()
 
     return (

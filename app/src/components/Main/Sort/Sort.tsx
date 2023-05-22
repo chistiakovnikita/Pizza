@@ -2,25 +2,25 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setSortIndex } from '../../../redux/slices/filterSlice'
+import { RootState } from '../../../redux/store'
 
 import './sort.scss'
 
-const Sort:React.FC = () => {
+type MenuSortItem = {
+    name: string
+    sort: string
+}
+
+
+const Sort: React.FC = () => {
     const [open, setOpen] = useState(false)
 
-    const sortIndex = useSelector(
-        (state) => state.filterSlice.sortIndex
-    )
+    const sortIndex = useSelector((state: RootState) => state.filterSlice.sortIndex)
     const dispatch = useDispatch()
 
     const sortRef = useRef<HTMLDivElement>(null)
 
-    type MenuSortItem = {
-        name: string
-        sort: string
-    }
-
-    const menuSort:MenuSortItem[] = [
+    const menuSort: MenuSortItem[] = [
         {
             name: 'популярности',
             sort: 'rating',
@@ -35,14 +35,21 @@ const Sort:React.FC = () => {
         },
     ]
 
-    const itemSortHandler = (item:MenuSortItem) => {
+    const itemSortHandler = (item: MenuSortItem) => {
         dispatch(setSortIndex(item))
         setOpen(false)
     }
 
     useEffect(() => {
-        const bodyClickHandler = (event) => {
-            if (!event.composedPath().includes(sortRef.current)) {
+        const bodyClickHandler = (event: MouseEvent) => {
+            const _event = event as MouseEvent & {
+                composedPath(): Node[]
+            } 
+
+            if (
+                sortRef.current && // sortRef.current && (проверка для ts
+                !_event.composedPath().includes(sortRef.current)
+            ) {
                 setOpen(false)
             }
         }

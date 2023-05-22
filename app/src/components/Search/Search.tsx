@@ -1,3 +1,4 @@
+import React from 'react'
 import { useCallback, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { CiSearch } from 'react-icons/ci'
@@ -7,16 +8,16 @@ import { setSearchValue } from '../../redux/slices/filterSlice'
 
 import './search.scss'
 
-const Search = () => {
-    const [value, setValue] = useState('')
-    
+const Search: React.FC = () => {
+    const [value, setValue] = useState<string>('')
+
     const dispatch = useDispatch()
-    const inputRef = useRef()
+    const inputRef = useRef<HTMLInputElement>(null)
 
     const clearHandler = () => {
         dispatch(setSearchValue(''))
         setValue('')
-        inputRef.current.focus()
+        inputRef.current?.focus() // ts (?null)
     }
 
     const updateSearchValue = useCallback(
@@ -26,7 +27,7 @@ const Search = () => {
         []
     )
 
-    const changeInputHadler = (event) => {
+    const changeInputHadler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value)
         updateSearchValue(event.target.value)
     }

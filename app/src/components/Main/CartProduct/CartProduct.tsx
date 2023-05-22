@@ -1,10 +1,25 @@
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { MdDeleteForever } from 'react-icons/md'
 import ButtonCounter from '../BattonCounter'
-import { decreaseCount, addProduct, deleteProduct } from '../../../redux/slices/cartSlice'
+import {
+    decreaseCount,
+    addProduct,
+    deleteProduct,
+} from '../../../redux/slices/cartSlice'
 import './cartProduct.scss'
 
-const CartProduct = (props) => {
+type CartProductProps = {
+    img: string
+    price: number
+    title: string
+    type: string
+    size: number
+    count: number
+    id: string
+}
+
+const CartProduct: React.FC<CartProductProps> = (props) => {
     const { img, price, title, type, size, count, id } = props
 
     const dispatch = useDispatch()
@@ -36,9 +51,9 @@ const CartProduct = (props) => {
                 <ButtonCounter onClick={increase} content="+" />
             </div>
             <span className="cart-product__price">{price * count}</span>
-            <batton onClick={remove} className="cart-product__btn-delete">
+            <button onClick={remove} className="cart-product__btn-delete">
                 <MdDeleteForever />
-            </batton>
+            </button>
         </div>
     )
 }
