@@ -1,20 +1,21 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { CartProduct, addProduct } from '../../../redux/slices/cartSlice'
+import { CartProductTypes, addProduct } from '../../../redux/slices/cartSlice'
 import { RootState } from '../../../redux/store'
 import './pizzaCard.scss'
 
 type PizzaCardProps = {
-    img:string
-    price:number
-    title:string
-    type:number[]
-    size :number[]
-    id:string
+    img: string
+    price: number
+    title: string
+    type: number[]
+    size: number[]
+    id: string
 }
 
-const PizzaCard:React.FC<PizzaCardProps> = (props) => {
+const PizzaCard: React.FC<PizzaCardProps> = (props) => {
     const { img, price, title, type, size, id } = props
 
     const currentProduct = useSelector((state: RootState) =>
@@ -22,7 +23,7 @@ const PizzaCard:React.FC<PizzaCardProps> = (props) => {
     )
     // нужна проверка т.к. приходит undefined
     const count = currentProduct ? currentProduct.count : 0
-    
+
     const dispatch = useDispatch()
 
     const [activeType, setActiveType] = useState(0)
@@ -32,14 +33,14 @@ const PizzaCard:React.FC<PizzaCardProps> = (props) => {
     const sizeValue = ['25', '30', '35']
 
     const addProductHandler = () => {
-        const product: CartProduct = {
+        const product: CartProductTypes = {
             id,
             title,
             price,
             img,
             type: typeName[activeType],
             size: sizeValue[activeSize],
-            count:0,
+            count: 0,
         }
 
         dispatch(addProduct(product))
@@ -47,8 +48,11 @@ const PizzaCard:React.FC<PizzaCardProps> = (props) => {
 
     return (
         <div className="pizza-card">
-            <img className="pizza-card__img" src={img} alt="pizza" />
-            <h3 className="pizza-card__title">{title}</h3>
+            <Link className="pizza-card__link" key={id} to={`/pizza/${id}`}>
+                <img className="pizza-card__img" src={img} alt="pizza" />
+                <h3 className="pizza-card__title">{title}</h3>
+            </Link>
+
             <div className="pizza-card__params">
                 <ul className="pizza-card__list">
                     {type.map((_, index) => (

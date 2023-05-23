@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setSortIndex } from '../../../redux/slices/filterSlice'
+import {  SortBy, setSortIndex } from '../../../redux/slices/filterSlice'
 import { RootState } from '../../../redux/store'
 
 import './sort.scss'
 
-type MenuSortItem = {
-    name: string
-    sort: string
-}
+
 
 
 const Sort: React.FC = () => {
@@ -20,7 +17,7 @@ const Sort: React.FC = () => {
 
     const sortRef = useRef<HTMLDivElement>(null)
 
-    const menuSort: MenuSortItem[] = [
+    const menuSort: SortBy[] = [
         {
             name: 'популярности',
             sort: 'rating',
@@ -35,7 +32,7 @@ const Sort: React.FC = () => {
         },
     ]
 
-    const itemSortHandler = (item: MenuSortItem) => {
+    const itemSortHandler = (item: SortBy) => {
         dispatch(setSortIndex(item))
         setOpen(false)
     }

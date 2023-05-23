@@ -6,9 +6,9 @@ import Sort from '../Sort'
 
 import './filters.scss'
 
-const Filters:React.FC = () => {
+const Filters: React.FC = () => {
     const categoryIndex = useSelector(
-        (state:RootState) => state.filterSlice.categoryIndex
+        (state: RootState) => state.filterSlice.categoryIndex
     )
     const dispatch = useDispatch()
 
@@ -42,7 +42,6 @@ const Filters:React.FC = () => {
                             </li>
                         ))}
                     </ul>
-
                     <Sort />
                 </div>
             </div>

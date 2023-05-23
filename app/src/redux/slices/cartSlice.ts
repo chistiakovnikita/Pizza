@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { getLocalStorage } from '../../components/utils/getLocalStorage'
 
-export type CartProduct = {
+export type CartProductTypes = {
     id: string
     title: string
     price: number
@@ -13,20 +14,22 @@ export type CartProduct = {
 interface CartSliceState {
     totalPrice: number
     totalCount: number
-    products: CartProduct[]
+    products: CartProductTypes[]
 }
 
+const { totalPrice, products, totalCount } = getLocalStorage()
+
 const initialState: CartSliceState = {
-    totalPrice: 0,
-    products: [],
-    totalCount: 0,
+    totalPrice,
+    products,
+    totalCount,
 }
 
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addProduct(state, action :PayloadAction<CartProduct>) {
+        addProduct(state, action: PayloadAction<CartProductTypes>) {
             const findProduct = state.products.find(
                 (product) => product.id === action.payload.id
             )
@@ -51,12 +54,12 @@ const cartSlice = createSlice({
             )
         },
 
-        decreaseCount(state, action:PayloadAction<string>) {
+        decreaseCount(state, action: PayloadAction<string>) {
             const findProduct = state.products.find(
                 (product) => product.id === action.payload
             )
 
-            if (findProduct) {
+            if (findProduct && findProduct.count > 1) {
                 findProduct.count--
             }
 
@@ -71,7 +74,7 @@ const cartSlice = createSlice({
             )
         },
 
-        deleteProduct(state, action:PayloadAction<string>) {
+        deleteProduct(state, action: PayloadAction<string>) {
             state.products = state.products.filter(
                 (product) => product.id !== action.payload
             )

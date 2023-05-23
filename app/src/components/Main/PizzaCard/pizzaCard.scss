@@ -75,6 +75,11 @@
         }
     }
 
+    &__link {
+        text-decoration: none;
+        color: inherit;
+    }
+
     .active {
         background: $white;
     }

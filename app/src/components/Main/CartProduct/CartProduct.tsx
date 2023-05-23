@@ -6,6 +6,7 @@ import {
     decreaseCount,
     addProduct,
     deleteProduct,
+    CartProductTypes,
 } from '../../../redux/slices/cartSlice'
 import './cartProduct.scss'
 
@@ -14,7 +15,7 @@ type CartProductProps = {
     price: number
     title: string
     type: string
-    size: number
+    size: string
     count: number
     id: string
 }
@@ -28,7 +29,7 @@ const CartProduct: React.FC<CartProductProps> = (props) => {
         dispatch(
             addProduct({
                 id,
-            })
+            } as CartProductTypes) //необходим только id, но ts не позволяет, поэтому "as CartProductTypes"
         )
     }
     const decrease = () => {

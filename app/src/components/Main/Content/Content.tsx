@@ -1,27 +1,28 @@
 import React, { useCallback, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-import qs from 'qs'
-
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { RootState, useAppDispatch } from '../../../redux/store'
 import { fetchPizzas } from '../../../redux/slices/pizzasSlice'
 import PizzaCard from '../PizzaCard'
 import Skeleton from '../Skeleton'
-import { RootState } from '../../../redux/store'
+import qs from 'qs'
 
 import './content.scss'
 
 const Content: React.FC = () => {
     const { categoryIndex, sortIndex, searchValue } = useSelector(
-        (state:RootState) => state.filterSlice
+        (state: RootState) => state.filterSlice
     )
-    const { data, status } = useSelector((state:RootState) => state.pizzasSlice)
-    const dispatch = useDispatch()
+    const { data, status } = useSelector(
+        (state: RootState) => state.pizzasSlice
+    )
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const category = categoryIndex > 0 ? `category=${categoryIndex}` : ''
 
     const getData = useCallback(async () => {
         dispatch(
-            fetchPizzas:({
+            fetchPizzas({
                 category, //параметры category,sortIndex,searchValue необходимо передать в  AsyncThunk
                 sortIndex,
                 searchValue,
@@ -56,13 +57,7 @@ const Content: React.FC = () => {
                                   <Skeleton key={index} />
                               ))
                             : data.map((pizza) => (
-                                  <Link
-                                      className="content__link"
-                                      key={pizza.id}
-                                      to={`/pizza/${pizza.id}`}
-                                  >
-                                      <PizzaCard {...pizza} />
-                                  </Link>
+                                  <PizzaCard key={pizza.id} {...pizza} />
                               ))}
                     </div>
                 )}

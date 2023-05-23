@@ -13,7 +13,7 @@ const Header: React.FC = () => {
         (state: RootState) => state.cartSlice
     )
     const location = useLocation()
-
+    
     return (
         <header className="header">
             <div className="container">

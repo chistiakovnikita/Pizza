@@ -1,4 +1,9 @@
-function ButtonCounter(props) {
+type ButtonCounterProps = {
+    content: string
+    onClick: () => void
+}
+
+const ButtonCounter: React.FC<ButtonCounterProps> = (props) => {
     const { content, onClick } = props
 
     return (
