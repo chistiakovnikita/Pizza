@@ -16,6 +16,7 @@ const Content: React.FC = () => {
     const { data, status } = useSelector(
         (state: RootState) => state.pizzasSlice
     )
+    const { products } = useSelector((state:RootState) => state.cartSlice)
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const category = categoryIndex > 0 ? `category=${categoryIndex}` : ''
@@ -42,6 +43,11 @@ const Content: React.FC = () => {
         })
         navigate(`?${queryString}`)
     }, [category, sortIndex, searchValue, navigate])
+
+    useEffect(() => {
+        const json = JSON.stringify(products)
+        localStorage.setItem('cart', json)
+    }, [products])
 
     return (
         <section className="content">

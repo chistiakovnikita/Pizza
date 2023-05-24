@@ -1,4 +1,4 @@
-import { calcTotalPrice ,calcTotalCount} from './total'
+import { calcTotalPrice ,calcTotalCount} from './calculation'
 
 export const getLocalStorage = () => {
     const data = localStorage.getItem('cart')

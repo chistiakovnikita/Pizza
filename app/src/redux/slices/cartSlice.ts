@@ -19,6 +19,8 @@ interface CartSliceState {
 
 const { totalPrice, products, totalCount } = getLocalStorage()
 
+
+
 const initialState: CartSliceState = {
     totalPrice,
     products,

@@ -1,9 +1,7 @@
 @import '../../../scss/variables.scss';
 
 .cart {
-    max-width: 1200px;
     margin: 0 auto;
-    padding: 30px 100px;
     background-color: #fff;
 }
 
@@ -16,12 +14,21 @@
 .cart-header {
     display: grid;
     grid-template-columns: 2fr repeat(3, 3fr) 1fr;
+    gap: 20px;
     align-items: center;
     text-transform: uppercase;
     font-weight: 500;
     padding: 10px;
     background-color: $red-light;
     text-align: center;
+    @media screen and (max-width: 768px) {
+        display: block;
+        p {
+            display: none;
+            grid-template-columns: 1fr;
+            align-items: center;
+        }
+    }
 }
 
 .cart-header__name {
@@ -46,12 +53,18 @@
 .cart-footer {
     display: grid;
     grid-template-columns: 2fr repeat(3, 3fr) 1fr;
+    gap: 20px;
     font-weight: 700;
     font-size: 20px;
     align-items: center;
     background-color: $red-light;
     padding: 10px;
     text-align: center;
+    @media screen and (max-width: 600px) {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
 }
 
 .cart-footer__quantity {

@@ -46,7 +46,7 @@ const CartProduct: React.FC<CartProductProps> = (props) => {
             <p className="cart-product__title">
                 {title} <span>{type} тесто</span> <span>{size} см.</span>
             </p>
-            <div>
+            <div className="cart-product__counter-wrapper">
                 <ButtonCounter onClick={decrease} content="-" />
                 <span className="cart-product__quantity">{count}</span>
                 <ButtonCounter onClick={increase} content="+" />
